@@ -1,20 +1,22 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-<form method="post">
-    {% csrf_token %}
-    Username:<br>
-    <input type="text" name="username"><br><br>
-    Password:<br>
-    <input type="password" name="password"><br><br>
-    Email:<br>
-    <input type="email" name="email"><br><br>
-    <br><br>
-    <input type="submit" value="Submit">
-</form>
-</body>
-</html>
+{% extends "carstagram/base.html" %}
+
+{% block content %}
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-4 mx-auto">
+            <form method="post" class="form">
+                {% csrf_token %}
+                <label for="inputUsername">Username</label>
+                <input type="text" class="form-control" id="inputUsername" placeholder="Enter username" name="username">
+                <label for="inputPassword">Password</label>
+                <input type="password" class="form-control" id="inputPassword" placeholder="Password" name="password">
+                <label for="inputEmail">Email address</label>
+                <input type="email" class="form-control" id="inputEmail" aria-describedby="emailHelp" placeholder="Enter email" name="email">
+                <br>
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

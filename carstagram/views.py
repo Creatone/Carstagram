@@ -1,15 +1,17 @@
 from django.contrib.auth import authenticate, login
 from django.shortcuts import render, redirect
-from django.views import View
+from django.views import View, generic
 
 from .forms import UserForm
+from .models import CarPhoto
 
 
-class IndexView(View):
+class IndexView(generic.ListView):
     template_name = 'carstagram/index.html'
+    context_object_name = 'latest_carphoto_list'
 
-    def get(self, request):
-        return render(request, self.template_name)
+    def get_queryset(self):
+        return CarPhoto.objects.order_by('-pub_date')[:5]
 
 
 class UserFormView(View):
